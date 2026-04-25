@@ -25,7 +25,7 @@ Quarry is a **resource discovery engine** designed to be called by AI Agents (He
 It doesn't download files — it **finds** the best public routes (cloud drive links, magnet URIs, ebook pages) across 15 sources, ranks them by quality, verifies liveness, and returns structured JSON.
 
 ```
-User: "帮我找 Oppenheimer 4K 资源"
+User: "Find me Oppenheimer 4K resources"
 
 Agent translates → hunt.py search "Oppenheimer 2023" --4k --json
 
@@ -62,9 +62,9 @@ Cloud drive links die constantly. The engine auto-probes before delivery:
 
 | Provider | Method | Result |
 |:---------|:-------|:-------|
-| Aliyun (阿里云盘) | Anonymous share API | `alive` / `cancelled` |
-| Quark (夸克网盘) | Share token API | `alive` / `expired` |
-| Baidu (百度网盘) | Page dead-signal detection | `alive` / `removed` |
+| Aliyun (AliDrive) | Anonymous share API | `alive` / `cancelled` |
+| Quark (Quark Drive) | Share token API | `alive` / `expired` |
+| Baidu (Baidu Netdisk) | Page dead-signal detection | `alive` / `removed` |
 
 Dead links → auto-demoted to `risky` tier, never shown in text output.
 
