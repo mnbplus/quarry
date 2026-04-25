@@ -13,7 +13,7 @@ from .models import SourceStatus
 
 class ResourceCache:
     def __init__(self, db_path: Path | None = None) -> None:
-        self.db_path = db_path or (storage_root() / "resource_hunter.db")
+        self.db_path = db_path or (storage_root() / "quarry.db")
         self.db_path.parent.mkdir(parents=True, exist_ok=True)
         self._local = threading.local()
         self._init_db()

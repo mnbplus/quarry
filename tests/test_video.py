@@ -3,14 +3,14 @@ from __future__ import annotations
 import subprocess
 from pathlib import Path
 
-from resource_hunter.cache import ResourceCache
-from resource_hunter.video_core import VideoManager
+from quarry.cache import ResourceCache
+from quarry.video_core import VideoManager
 
 
 def test_video_info_reports_missing_binary(monkeypatch, tmp_path):
     cache = ResourceCache(tmp_path / "cache.db")
     manager = VideoManager(cache)
-    monkeypatch.setattr("resource_hunter.video_core.shutil.which", lambda name: None)
+    monkeypatch.setattr("quarry.video_core.shutil.which", lambda name: None)
     try:
         manager.info("https://youtu.be/demo")
     except RuntimeError as exc:

@@ -1,5 +1,5 @@
 ---
-name: resource-hunter
+name: quarry
 version: 1.0.0
 description: >-
   Use when finding public download routes for movies, TV, anime, music,
@@ -16,7 +16,7 @@ metadata:
       bins: ["python3"]
 ---
 
-# Resource Hunter
+# Quarry
 
 ## Overview
 
@@ -43,7 +43,7 @@ Public resource discovery engine for AI agents. Finds the best download routes a
 
 ```bash
 # Locate skill directory
-SKILL_DIR="$(openclaw skills path resource-hunter)/scripts"
+SKILL_DIR="$(openclaw skills path quarry)/scripts"
 
 # Search
 python3 "$SKILL_DIR/hunt.py" search "Oppenheimer 2023" --4k --json
@@ -187,7 +187,7 @@ When the user asks to add custom sources, change scoring, or set API keys:
 - Custom source adapters: `local/sources/my_source.py` (auto-discovered on startup)
 - Ranking weight overrides: `local/config.json`
 - Environment variables: `local/.env` (overrides root `.env`)
-- **Never modify files in `scripts/resource_hunter/`** for user-specific customizations
+- **Never modify files in `scripts/quarry/`** for user-specific customizations
 - Read `CONTRIBUTING.md` for the full adapter contract and examples
 
 ## Security & Privacy

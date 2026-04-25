@@ -2,13 +2,13 @@
 # The primary skill definition is in SKILL.md (frontmatter + markdown).
 # This file provides OpenClaw-specific instruction overrides.
 version: 1
-name: resource-hunter
-display_name: Resource Hunter
+name: quarry
+display_name: Quarry
 short_description: >-
   High-recall public resource discovery for AI agents.
   Searches pan/torrent/magnet/book sources with quality-aware ranking, link viability probing, and structured JSON output.
 default_prompt: >-
-  Use resource-hunter when the user wants public download routes, release comparison,
+  Use quarry when the user wants public download routes, release comparison,
   source health, book/ebook discovery, or a public video URL workflow without login or cookies.
 instructions: |
   CRITICAL WORKFLOW — you MUST follow this order:
@@ -64,7 +64,7 @@ instructions: |
     - Always respect public-only principle: no DRM circumvention, no login required
 
   Customization rules (IMPORTANT — read before modifying code):
-    - User customizations go in local/, NEVER in scripts/resource_hunter/
+    - User customizations go in local/, NEVER in scripts/quarry/
     - Custom source adapters → local/sources/my_source.py (auto-discovered)
     - Ranking weight overrides → local/config.json
     - API keys, proxies → local/.env (overrides root .env)

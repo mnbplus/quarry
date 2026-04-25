@@ -28,7 +28,7 @@ for _env_candidate in (SCRIPT_DIR.parent / ".env", SCRIPT_DIR.parent / "local" /
                     os.environ.setdefault(_k.strip(), _v.strip())
 
 # Auto-cleanup deprecated files from previous versions (safe for ZIP updaters)
-from resource_hunter._cleanup import purge_deprecated
+from quarry._cleanup import purge_deprecated
 
 _removed = purge_deprecated()
 if _removed:
@@ -36,7 +36,7 @@ if _removed:
     for _f in _removed:
         print(f"   removed: {_f}", file=sys.stderr)
 
-from resource_hunter.cli import main
+from quarry.cli import main
 
 
 if __name__ == "__main__":

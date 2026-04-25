@@ -1,4 +1,4 @@
-# Resource Hunter Usage
+# Quarry Usage
 
 ## Search
 

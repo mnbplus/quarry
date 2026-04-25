@@ -34,7 +34,7 @@ def _resolve_channel(args: argparse.Namespace) -> str:
 
 def _format_doctor_text(payload: dict[str, Any]) -> str:
     lines = [
-        "Resource Hunter doctor",
+        "Quarry doctor",
         f"Python: {payload['python']}",
         f"stdout_encoding: {payload['stdout_encoding']}",
         f"cache_db: {payload['cache_db']}",
@@ -251,7 +251,7 @@ def _subtitle(args: argparse.Namespace) -> int:
 
 
 def build_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(description="Resource Hunter")
+    parser = argparse.ArgumentParser(description="Quarry")
     sub = parser.add_subparsers(dest="command")
 
     p_search = sub.add_parser("search", help="Search public pan/torrent resources")

@@ -24,8 +24,8 @@ The engine auto-discovers and registers it on startup.
 Example `local/sources/my_tracker.py`:
 
 ```python
-from resource_hunter.sources.base import SourceAdapter, HTTPClient
-from resource_hunter.models import SearchIntent, SearchResult
+from quarry.sources.base import SourceAdapter, HTTPClient
+from quarry.models import SearchIntent, SearchResult
 
 class MyTrackerSource(SourceAdapter):
     name = "mytracker"

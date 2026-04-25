@@ -1,6 +1,6 @@
-from resource_hunter.intent import parse_intent
-from resource_hunter.ranking import deduplicate_results, score_result
-from resource_hunter.models import SearchResult
+from quarry.intent import parse_intent
+from quarry.ranking import deduplicate_results, score_result
+from quarry.models import SearchResult
 
 
 def test_pan_dedup_prefers_result_with_password():

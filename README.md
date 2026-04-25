@@ -3,7 +3,7 @@
 </p>
 
 <div align="center">
-  <h1>🎯 Resource Hunter</h1>
+  <h1>🎯 Quarry</h1>
   <p><em>Public resource routing engine purpose-built for AI Agents.</em></p>
   <p>Multi-source discovery → intelligent ranking → verified delivery.</p>
 </div>
@@ -20,7 +20,7 @@
 
 ## What is this?
 
-Resource Hunter is a **resource discovery engine** designed to be called by AI Agents (Hermes, OpenClaw, etc.).
+Quarry is a **resource discovery engine** designed to be called by AI Agents (Hermes, OpenClaw, etc.).
 
 It doesn't download files — it **finds** the best public routes (cloud drive links, magnet URIs, ebook pages) across 15 sources, ranks them by quality, verifies liveness, and returns structured JSON.
 
@@ -100,8 +100,8 @@ Sources: SubDL (multilingual), SubHD (Chinese), Jimaku (Japanese anime).
 ## Quick Start
 
 ```bash
-git clone https://github.com/mnbplus/resource-hunter.git
-cd resource-hunter
+git clone https://github.com/mnbplus/quarry.git
+cd quarry
 
 # Zero dependencies for basic search
 python3 scripts/hunt.py search "Oppenheimer 2023" --4k
@@ -152,7 +152,7 @@ Updating is safe regardless of how you installed:
 
 ```bash
 # Git users — just pull
-cd resource-hunter && git pull
+cd quarry && git pull
 
 # ZIP users — download new ZIP, extract over the old folder
 # (or delete and re-extract, both work)
@@ -177,7 +177,7 @@ local/
 
 ## Agent Integration
 
-Resource Hunter is designed as an **AI Agent skill** — it's meant to be called by Agents, not used directly by humans.
+Quarry is designed as an **AI Agent skill** — it's meant to be called by Agents, not used directly by humans.
 
 ### For Hermes / OpenClaw
 
@@ -279,10 +279,10 @@ flowchart LR
 ## Project Layout
 
 ```text
-resource-hunter/
+quarry/
 ├── scripts/
 │   ├── hunt.py                    # CLI entrypoint
-│   └── resource_hunter/
+│   └── quarry/
 │       ├── engine.py              # Search orchestration
 │       ├── intent.py              # Query → Intent → SearchPlan
 │       ├── ranking.py             # Scoring, tiers, deduplication
@@ -357,4 +357,4 @@ python -m pytest tests/ -v
 
 ## Feedback and Issues
 
-If you encounter any bugs, have feature requests, or need help with custom source adapters, please [open an issue](https://github.com/mnbplus/resource-hunter/issues/new) on GitHub. Pull requests are also highly welcome!
+If you encounter any bugs, have feature requests, or need help with custom source adapters, please [open an issue](https://github.com/mnbplus/quarry/issues/new) on GitHub. Pull requests are also highly welcome!

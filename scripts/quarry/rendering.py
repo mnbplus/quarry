@@ -26,7 +26,7 @@ def format_search_text(response: dict[str, Any], max_results: int | None = None)
     visible = [item for item in results if _display_tier(item) in {"top", "related"}][:limit]
 
     lines = [
-        f"Resource Hunter v{response.get('schema_version', '3')}",
+        f"Quarry v{response.get('schema_version', '3')}",
         f"Query: {response['query']}",
         f"Kind: {intent['kind']} | Channel: {' -> '.join(plan['channels'])}",
     ]
@@ -107,7 +107,7 @@ def format_search_text(response: dict[str, Any], max_results: int | None = None)
 
 
 def format_sources_text(payload: dict[str, Any]) -> str:
-    lines = ["Resource Hunter sources", ""]
+    lines = ["Quarry sources", ""]
     for item in payload["sources"]:
         status = item["recent_status"]
         state = "unknown"
@@ -142,7 +142,7 @@ def format_sources_text(payload: dict[str, Any]) -> str:
 
 def format_benchmark_text(payload: dict[str, Any]) -> str:
     lines = [
-        "Resource Hunter benchmark",
+        "Quarry benchmark",
         f"Search cases: {payload['search_cases']} | Video cases: {payload['video_cases']}",
         f"Pass: {payload['pass']}",
         f"Overall Top1: {payload['overall']['top1_rate']:.1%}",

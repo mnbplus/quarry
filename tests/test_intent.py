@@ -1,4 +1,4 @@
-from resource_hunter.intent import build_plan, parse_intent
+from quarry.intent import build_plan, parse_intent
 
 
 def test_detects_kinds_and_fields():

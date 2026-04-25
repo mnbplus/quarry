@@ -1,4 +1,4 @@
-# Contributing to Resource Hunter
+# Contributing to Quarry
 
 > **This guide is for both human developers and AI coding agents.**  
 > If you are an AI assistant helping a user customize this project, **read the rules below before making any changes.**
@@ -17,10 +17,10 @@ Never mix them. This separation ensures updates (`git pull` / ZIP) never destroy
 
 | What you're doing | Where to put it | ⚠️ Do NOT put it here |
 |:-------------------|:----------------|:----------------------|
-| Adding a custom source adapter | `local/sources/my_source.py` | ~~`scripts/resource_hunter/sources/`~~ |
-| Overriding ranking weights | `local/config.json` | ~~editing `scripts/resource_hunter/config.py`~~ |
+| Adding a custom source adapter | `local/sources/my_source.py` | ~~`scripts/quarry/sources/`~~ |
+| Overriding ranking weights | `local/config.json` | ~~editing `scripts/quarry/config.py`~~ |
 | Setting API keys, proxies, tokens | `local/.env` (or root `.env`) | ~~hardcoding in `.py` files~~ |
-| Adding a custom subtitle source | `local/sources/my_subs.py` | ~~editing `scripts/resource_hunter/subdl.py`~~ |
+| Adding a custom subtitle source | `local/sources/my_subs.py` | ~~editing `scripts/quarry/subdl.py`~~ |
 
 ### Why?
 
@@ -40,8 +40,8 @@ Create a file in `local/sources/` (e.g., `local/sources/my_tracker.py`):
 
 ```python
 """Custom source adapter — lives in local/ so it survives updates."""
-from resource_hunter.sources.base import SourceAdapter, HTTPClient
-from resource_hunter.models import SearchIntent, SearchResult
+from quarry.sources.base import SourceAdapter, HTTPClient
+from quarry.models import SearchIntent, SearchResult
 
 
 class MyTrackerSource(SourceAdapter):
@@ -97,7 +97,7 @@ Create `local/config.json`:
 }
 ```
 
-See `scripts/resource_hunter/config.py` for all available fields and their defaults.  
+See `scripts/quarry/config.py` for all available fields and their defaults.  
 You only need to include the fields you want to override — defaults apply for the rest.
 
 ---
@@ -117,15 +117,15 @@ When helping a user modify this project, follow these rules:
 ### 1. Identify the type of change
 
 - **User-specific customization** (custom source, config tweak, API key) → `local/`
-- **Bug fix or feature for the core project** → `scripts/resource_hunter/`
+- **Bug fix or feature for the core project** → `scripts/quarry/`
 - **Not sure?** → Default to `local/`. It's always safe.
 
 ### 2. Never modify core files for user customizations
 
-❌ **Wrong**: Editing `scripts/resource_hunter/sources/nyaa.py` to add a custom tracker  
+❌ **Wrong**: Editing `scripts/quarry/sources/nyaa.py` to add a custom tracker  
 ✅ **Right**: Creating `local/sources/my_tracker.py` as a new adapter
 
-❌ **Wrong**: Editing `scripts/resource_hunter/config.py` to change scoring weights  
+❌ **Wrong**: Editing `scripts/quarry/config.py` to change scoring weights  
 ✅ **Right**: Creating `local/config.json` with the override values
 
 ❌ **Wrong**: Hardcoding `HTTPS_PROXY=...` in a `.py` file  
@@ -134,7 +134,7 @@ When helping a user modify this project, follow these rules:
 ### 3. Respect the adapter contract
 
 Custom source adapters MUST:
-- Subclass `SourceAdapter` from `resource_hunter.sources.base`
+- Subclass `SourceAdapter` from `quarry.sources.base`
 - Define `name`, `channel`, `priority` class attributes
 - Implement `search()` returning `list[SearchResult]`
 - Use the provided `http_client` for all HTTP requests (don't create your own)
@@ -143,10 +143,10 @@ Custom source adapters MUST:
 ### 4. Don't modify these files unless fixing a bug
 
 These are core project files with strict contracts:
-- `scripts/resource_hunter/models.py` — data model contracts
-- `scripts/resource_hunter/ranking.py` — scoring algorithm
-- `scripts/resource_hunter/engine.py` — orchestration logic
-- `scripts/resource_hunter/sources/base.py` — adapter base class
+- `scripts/quarry/models.py` — data model contracts
+- `scripts/quarry/ranking.py` — scoring algorithm
+- `scripts/quarry/engine.py` — orchestration logic
+- `scripts/quarry/sources/base.py` — adapter base class
 
 ### 5. Test after changes
 
@@ -162,12 +162,12 @@ python scripts/hunt.py benchmark
 
 ## Deprecated file management
 
-When removing a file from the project, add its path to `_DEPRECATED` in `scripts/resource_hunter/_cleanup.py`:
+When removing a file from the project, add its path to `_DEPRECATED` in `scripts/quarry/_cleanup.py`:
 
 ```python
 _DEPRECATED: tuple[str, ...] = (
     # ... existing entries ...
-    "scripts/resource_hunter/old_module.py",   # v1.1.0 — removed because...
+    "scripts/quarry/old_module.py",   # v1.1.0 — removed because...
 )
 ```
 
@@ -178,8 +178,8 @@ This ensures ZIP updaters get the file auto-cleaned on next startup.
 ## Project structure reference
 
 ```text
-resource-hunter/
-├── scripts/resource_hunter/     # 🔒 Core project code (updated by git pull / ZIP)
+quarry/
+├── scripts/quarry/     # 🔒 Core project code (updated by git pull / ZIP)
 │   ├── sources/                 # Built-in source adapters
 │   ├── engine.py                # Search orchestration
 │   ├── ranking.py               # Scoring algorithm

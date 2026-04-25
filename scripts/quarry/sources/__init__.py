@@ -5,11 +5,11 @@ The registry auto-discovers them via direct imports below.
 
 Usage::
 
-    from resource_hunter.sources import default_adapters
+    from quarry.sources import default_adapters
     pan_sources, torrent_sources = default_adapters()
 
     # Or via registry:
-    from resource_hunter.sources import SourceRegistry
+    from quarry.sources import SourceRegistry
     registry = SourceRegistry()
     for adapter in registry.pan_adapters():
         ...

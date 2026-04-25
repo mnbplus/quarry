@@ -1,24 +1,24 @@
-# Resource Hunter Architecture
+# Quarry Architecture
 
 ## Layout
 
 - `scripts/hunt.py`: primary CLI entrypoint
-- `scripts/resource_hunter/models.py`: public data models
-- `scripts/resource_hunter/common.py`: parsing, normalization, release tags, and filesystem helpers
-- `scripts/resource_hunter/parsers.py`: release tag / quality parsing
-- `scripts/resource_hunter/url_utils.py`: URL, provider, platform detection
-- `scripts/resource_hunter/text_utils.py`: title normalization, tokenization, language detection
-- `scripts/resource_hunter/config.py`: configurable ranking weights and scoring parameters
-- `scripts/resource_hunter/cache.py`: SQLite-backed cache and manifest storage
-- `scripts/resource_hunter/intent.py`: query parsing, alias resolution, and query-family generation
-- `scripts/resource_hunter/sources/`: plugin-based source adapters (see below)
-- `scripts/resource_hunter/ranking.py`: identity, scoring, tiers, dedupe, diversity reorder
-- `scripts/resource_hunter/rendering.py`: text renderers and compatibility transforms
-- `scripts/resource_hunter/engine.py`: orchestration, cache integration, source health, benchmark entrypoint
-- `scripts/resource_hunter/benchmark.py`: offline deterministic benchmark suite
-- `scripts/resource_hunter/video_core.py`: yt-dlp workflow and manifest handling
-- `scripts/resource_hunter/cli.py`: unified CLI surface
-- `scripts/resource_hunter/exceptions.py`: custom exception hierarchy
+- `scripts/quarry/models.py`: public data models
+- `scripts/quarry/common.py`: parsing, normalization, release tags, and filesystem helpers
+- `scripts/quarry/parsers.py`: release tag / quality parsing
+- `scripts/quarry/url_utils.py`: URL, provider, platform detection
+- `scripts/quarry/text_utils.py`: title normalization, tokenization, language detection
+- `scripts/quarry/config.py`: configurable ranking weights and scoring parameters
+- `scripts/quarry/cache.py`: SQLite-backed cache and manifest storage
+- `scripts/quarry/intent.py`: query parsing, alias resolution, and query-family generation
+- `scripts/quarry/sources/`: plugin-based source adapters (see below)
+- `scripts/quarry/ranking.py`: identity, scoring, tiers, dedupe, diversity reorder
+- `scripts/quarry/rendering.py`: text renderers and compatibility transforms
+- `scripts/quarry/engine.py`: orchestration, cache integration, source health, benchmark entrypoint
+- `scripts/quarry/benchmark.py`: offline deterministic benchmark suite
+- `scripts/quarry/video_core.py`: yt-dlp workflow and manifest handling
+- `scripts/quarry/cli.py`: unified CLI surface
+- `scripts/quarry/exceptions.py`: custom exception hierarchy
 
 ## Source adapters (plugin architecture)
 

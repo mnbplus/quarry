@@ -3,7 +3,7 @@
 </p>
 
 <div align="center">
-  <h1>🎯 Resource Hunter</h1>
+  <h1>🎯 Quarry</h1>
   <p><em>为 AI Agent 打造的公共资源路由引擎。</em></p>
   <p>多源发现 → 智能排序 → 验证交付。</p>
 </div>
@@ -20,7 +20,7 @@
 
 ## 这是什么？
 
-Resource Hunter 是一个**资源发现引擎**，设计用于被 AI Agent（Hermes、OpenClaw 等）调用。
+Quarry 是一个**资源发现引擎**，设计用于被 AI Agent（Hermes、OpenClaw 等）调用。
 
 它不负责下载——它**搜索**最佳公共路由（网盘链接、磁力 URI、电子书页面），跨 15 个源进行排序、验证存活性，返回结构化 JSON。
 
@@ -100,8 +100,8 @@ hunt.py subtitle "Breaking Bad" --season 1 --episode 1 --lang zh,en --json
 ## 快速开始
 
 ```bash
-git clone https://github.com/mnbplus/resource-hunter.git
-cd resource-hunter
+git clone https://github.com/mnbplus/quarry.git
+cd quarry
 
 # 基础搜索无需任何依赖
 python3 scripts/hunt.py search "Oppenheimer 2023" --4k
@@ -152,7 +152,7 @@ python3 scripts/hunt.py cache stats --json         # 缓存统计
 
 ```bash
 # Git 用户 — 直接 pull
-cd resource-hunter && git pull
+cd quarry && git pull
 
 # ZIP 用户 — 下载新 ZIP，直接解压覆盖旧文件夹
 # （或者先删除再解压，两种方式都可以）
@@ -177,7 +177,7 @@ local/
 
 ## Agent 集成
 
-Resource Hunter 是一个 **AI Agent 技能**——设计目标是被 Agent 调用，而非人工直接使用。
+Quarry 是一个 **AI Agent 技能**——设计目标是被 Agent 调用，而非人工直接使用。
 
 ### Hermes / OpenClaw 配置
 
@@ -266,10 +266,10 @@ flowchart LR
 ## 项目结构
 
 ```text
-resource-hunter/
+quarry/
 ├── scripts/
 │   ├── hunt.py                    # CLI 入口
-│   └── resource_hunter/
+│   └── quarry/
 │       ├── engine.py              # 搜索编排
 │       ├── intent.py              # 查询 → 意图 → 搜索计划
 │       ├── ranking.py             # 打分、分层、去重
@@ -323,4 +323,4 @@ resource-hunter/
 
 ## 反馈与交流
 
-如果你在使用过程中遇到任何 Bug，有新的功能需求（例如添加新的网盘或磁力源），或者对自定义适配器有任何疑问，非常欢迎你在 GitHub 提交 [Issue](https://github.com/mnbplus/resource-hunter/issues/new) 与我们交流。同时也强烈欢迎提交 PR！
+如果你在使用过程中遇到任何 Bug，有新的功能需求（例如添加新的网盘或磁力源），或者对自定义适配器有任何疑问，非常欢迎你在 GitHub 提交 [Issue](https://github.com/mnbplus/quarry/issues/new) 与我们交流。同时也强烈欢迎提交 PR！

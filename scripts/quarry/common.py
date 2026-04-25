@@ -1,6 +1,6 @@
 """Backward-compatible re-export layer.
 
-All public names previously importable from ``resource_hunter.common``
+All public names previously importable from ``quarry.common``
 remain available here. New code should prefer the specific sub-modules:
 
 - ``parsers``   – release tag / quality parsing
@@ -182,7 +182,7 @@ def ensure_utf8_stdio() -> None:
 
 def storage_root() -> Path:
     workspace = Path(os.environ.get("OPENCLAW_WORKSPACE", Path.home() / ".openclaw" / "workspace"))
-    root = workspace / "storage" / "resource-hunter"
+    root = workspace / "storage" / "quarry"
     root.mkdir(parents=True, exist_ok=True)
     return root
 

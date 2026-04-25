@@ -1,16 +1,16 @@
 from __future__ import annotations
 
-from resource_hunter.cache import ResourceCache
-from resource_hunter.cli import main as cli_main
-from resource_hunter.common import parse_quality_tags
-from resource_hunter.engine import ResourceHunterEngine
-from resource_hunter.intent import parse_intent
-from resource_hunter.sources.base import SourceAdapter
-from resource_hunter.intent import AliasResolver
-from resource_hunter.models import SearchResult, SourceStatus
-from resource_hunter.ranking import source_is_degraded
-from resource_hunter.rendering import format_search_text
-from resource_hunter.sources import _flatten_pan_payload
+from quarry.cache import ResourceCache
+from quarry.cli import main as cli_main
+from quarry.common import parse_quality_tags
+from quarry.engine import ResourceHunterEngine
+from quarry.intent import parse_intent
+from quarry.sources.base import SourceAdapter
+from quarry.intent import AliasResolver
+from quarry.models import SearchResult, SourceStatus
+from quarry.ranking import source_is_degraded
+from quarry.rendering import format_search_text
+from quarry.sources import _flatten_pan_payload
 
 
 class FakeSource(SourceAdapter):
@@ -145,7 +145,7 @@ def test_cli_text_limit_is_hard_contract(monkeypatch, capsys):
         "meta": {"cached": False},
     }
 
-    monkeypatch.setattr("resource_hunter.cli.ResourceHunterEngine.search", lambda *args, **kwargs: fake_response)
+    monkeypatch.setattr("quarry.cli.ResourceHunterEngine.search", lambda *args, **kwargs: fake_response)
     rc = cli_main(["search", "test query", "--limit", "1"])
     assert rc == 0
     output = capsys.readouterr().out

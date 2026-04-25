@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import json
 
-from resource_hunter import cli
+from quarry import cli
 
 
 def test_cli_search_json(monkeypatch, capsys):
@@ -35,7 +35,7 @@ def test_cli_search_json(monkeypatch, capsys):
     def fake_search(self, intent, plan=None, page=1, limit=8, use_cache=True, probe_links=True):
         return fake_response
 
-    monkeypatch.setattr("resource_hunter.engine.ResourceHunterEngine.search", fake_search)
+    monkeypatch.setattr("quarry.engine.ResourceHunterEngine.search", fake_search)
     rc = cli.main(["search", "test query", "--json"])
     assert rc == 0
     payload = json.loads(capsys.readouterr().out)
@@ -57,7 +57,7 @@ def test_cli_sources_text(monkeypatch, capsys):
             "meta": {"probe": probe},
         }
 
-    monkeypatch.setattr("resource_hunter.engine.ResourceHunterEngine.source_catalog", fake_catalog)
+    monkeypatch.setattr("quarry.engine.ResourceHunterEngine.source_catalog", fake_catalog)
     rc = cli.main(["sources"])
     assert rc == 0
     output = capsys.readouterr().out

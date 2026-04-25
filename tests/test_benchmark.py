@@ -1,8 +1,8 @@
-from resource_hunter.benchmark import run_benchmark_suite
-from resource_hunter.common import parse_quality_tags
-from resource_hunter.intent import parse_intent
-from resource_hunter.models import SearchResult
-from resource_hunter.ranking import score_result
+from quarry.benchmark import run_benchmark_suite
+from quarry.common import parse_quality_tags
+from quarry.intent import parse_intent
+from quarry.models import SearchResult
+from quarry.ranking import score_result
 
 
 def test_benchmark_suite_passes_gate():

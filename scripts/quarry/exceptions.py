@@ -1,4 +1,4 @@
-"""Custom exception hierarchy for resource-hunter.
+"""Custom exception hierarchy for quarry.
 
 Provides structured error types so callers can distinguish between
 network failures, parse errors, rate limits, and source unavailability
@@ -8,7 +8,7 @@ from __future__ import annotations
 
 
 class ResourceHunterError(Exception):
-    """Base class for all resource-hunter errors."""
+    """Base class for all quarry errors."""
 
 
 class SourceError(ResourceHunterError):

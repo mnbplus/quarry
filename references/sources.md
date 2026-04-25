@@ -1,4 +1,4 @@
-# Resource Hunter Sources
+# Quarry Sources
 
 ## Pan sources
 
