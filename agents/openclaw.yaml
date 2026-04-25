@@ -1,0 +1,71 @@
+# Supplementary agent reference for OpenClaw.
+# The primary skill definition is in SKILL.md (frontmatter + markdown).
+# This file provides OpenClaw-specific instruction overrides.
+version: 1
+name: resource-hunter
+display_name: Resource Hunter
+short_description: >-
+  High-recall public resource discovery for AI agents.
+  Searches pan/torrent/magnet/book sources with quality-aware ranking, link viability probing, and structured JSON output.
+default_prompt: >-
+  Use resource-hunter when the user wants public download routes, release comparison,
+  source health, book/ebook discovery, or a public video URL workflow without login or cookies.
+instructions: |
+  CRITICAL WORKFLOW — you MUST follow this order:
+
+  1. TRANSLATE the user's query to the official English or Romanized title BEFORE searching.
+     The search engine only matches against English release titles.
+     Examples:
+       黑袍纠察队 S05E03 → "The Boys S05E03"
+       梦魇绝镇 S04E01 → "FROM S04E01"
+       上伊那ぼたん → "Kamiina Botan"
+       三体 → "3 Body Problem" or "Three Body Problem"
+       进击的巨人 → "Attack on Titan" or "Shingeki no Kyojin"
+
+  2. FORMAT the query using release naming conventions:
+     TV:    {English Title} S{XX}E{XX}  → "The Boys S05E03"
+     Movie: {English Title} {year}      → "Oppenheimer 2023"
+     Anime: {Romanized Title}           → "Kamiina Botan"
+     Music: {Artist} {Album} {format}   → "Jay Chou Fantasy FLAC"
+     Book:  {Title} {format}            → "Clean Code epub"
+     Software: {Name} {version}         → "Adobe Photoshop 2024"
+
+  3. SEARCH using the translated query:
+     hunt.py search "The Boys S05E03" --tv --json
+
+  4. If "No confident match", try alternative English titles or shorter names.
+
+  5. INTERPRET RESULTS — pay attention to these v4.1 signals:
+     - `source_health.link_alive`: true = verified active, false = dead link (skip it), null = unknown
+     - `tier`: "top" = high confidence, "related" = decent match, "risky" = unreliable
+     - `penalties`: watch for "dead link detected" (pan probe found a dead share)
+     - For book results from "annas" source: the link_or_magnet is an Anna's Archive detail page URL
+
+  Available commands:
+    hunt.py search "<query>" [--kind movie|tv|anime|music|software|book] [--json]
+    hunt.py search "<query>" --no-probe [--json]   # skip pan link viability check (faster)
+    hunt.py sources [--probe] [--json]
+    hunt.py doctor [--json]
+    hunt.py video info|probe|download|subtitle <url> [--json]
+    hunt.py cache stats|cleanup [--json]
+    hunt.py benchmark [--json]
+
+  Category-specific guidance:
+    - Movie/TV/Anime: pan links are probed for viability; dead links auto-demoted
+    - Book: uses Anna's Archive as primary source; prefer --book flag for ebook queries
+    - Music: uses noise-filtered torrent sources; pan links prioritized for Chinese artists
+    - Software: routes to FitGirl (PC games), TorrentMac (macOS), and general trackers
+
+  Key behaviors:
+    - All output defaults to human-readable text; add --json for structured data
+    - JSON v3 output includes match_bucket, confidence, tier, canonical_identity
+    - Pan link viability probe runs by default; adds latency but filters dead links
+    - Source health model with circuit breaking prevents wasting time on degraded sources
+    - Always respect public-only principle: no DRM circumvention, no login required
+
+  Customization rules (IMPORTANT — read before modifying code):
+    - User customizations go in local/, NEVER in scripts/resource_hunter/
+    - Custom source adapters → local/sources/my_source.py (auto-discovered)
+    - Ranking weight overrides → local/config.json
+    - API keys, proxies → local/.env (overrides root .env)
+    - See CONTRIBUTING.md for the full adapter contract and examples

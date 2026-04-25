@@ -1,0 +1,11 @@
+{
+  "owner": "mnbplus",
+  "slug": "resource-hunter",
+  "displayName": "Resource Hunter",
+  "latest": {
+    "version": "1.0.0",
+    "publishedAt": 1745560200000,
+    "commit": "https://github.com/mnbplus/resource-hunter/commit/e40375595dd85b030568d16c7678132f48bc3121"
+  },
+  "history": []
+}

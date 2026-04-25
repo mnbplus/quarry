@@ -1,0 +1,3 @@
+# Place custom source adapter .py files here.
+# They will be auto-discovered and registered on startup.
+# See ../README.md for examples.
